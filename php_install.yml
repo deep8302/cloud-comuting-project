@@ -1,0 +1,7 @@
+---
+- hosts: web
+  tasks:
+   - package:
+       name: php
+       state: present
+

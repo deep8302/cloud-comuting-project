@@ -1,0 +1,7 @@
+[web]
+192.168.43.152 ansible_ssh_user=root anisble_ssh_pass=redhat
+
+[client]
+192.168.43.127 ansible_ssh_user=root ansible_ssh_pass=redhat
+[iaas]
+192.168.43.222 ansible_ssh_user=root ansible_ssh_pass=redhat

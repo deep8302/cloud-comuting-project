@@ -1,0 +1,7 @@
+
+---
+- hosts : storagesystem
+  tasks:
+   - user :
+      name : gyt    
+      password : redhat

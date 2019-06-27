@@ -1,0 +1,8 @@
+
+---
+- hosts: client
+  tasks:
+  - package:
+     name: "iscsi-initiator-utils"
+     state: present
+  - command: "sudo iscsiadm --mode node --targetname user --portal 192.168.43.123:3260 --login"

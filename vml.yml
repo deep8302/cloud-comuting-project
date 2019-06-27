@@ -1,0 +1,14 @@
+
+---
+- name: manage libvirt guests
+  user: root
+  hosts: iaas
+
+  tasks:
+      - name: start libvirtd
+        service: name=libvirtd state=started enabled=yes
+        register: libvirtd
+
+
+      - name: create vm
+        command : " sudo virt-install  --name dividv   --memory  512   --disk /var/lib/libvirt/images/dividv.qcow2,size=1  --vcpu   1   --location /os/rhel-server-7.3-x86_64-dvd.iso    --os-variant  rhel7   --graphics vnc,listen=0.0.0.0,port=5885  --os-type  linux  --noautoconsole "

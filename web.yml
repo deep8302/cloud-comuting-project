@@ -1,0 +1,16 @@
+---
+- hosts: all
+  tasks:
+  - package:
+      name: "httpd"
+      state: present
+      use: yum
+
+  - copy:
+      scr: "/project/div.html"
+      dest: "/webcontent"
+
+  - service:
+      name: "httpd"
+      state: restarted
+

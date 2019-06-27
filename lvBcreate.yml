@@ -1,0 +1,19 @@
+---
+- hosts: web
+  tasks:
+      - lvol:
+          size: 1G
+          vg: "vgcloud"
+          lv:  "mylv"
+      - lineinfile:
+          path: "/etc/tgt/targets.conf"
+          line: "<target user>\n\tbacking-store /dev/vgcloud/mylv\n</target>"
+          state: present
+      - service:
+          name: "firewalld"
+          state: stopped
+      - command: "setenforce 0"
+      - service:
+          name: "tgtd"
+          state: restarted
+

@@ -1,0 +1,26 @@
+
+---
+- hosts: web
+  tasks:
+      - lvol:
+          size: 1
+          vg: "cloudvg"
+          lv:  "w"
+      - lineinfile:
+          path: "/etc/tgt/targets.conf"
+          line: "<target user>"
+          state: present
+      - lineinfile:
+          path: "/etc/tgt/targets.conf"    
+          line: "backing-store /dev/cloudvg/w"
+          state: present
+      - lineinfile:
+          path: "/etc/tgt/targets.conf"    
+          line: "</target>"
+          state: present
+      - command: "setenforce 0"
+      - command: "iptables -F"
+      - service:
+          name: "tgtd"
+          state: restarted
+

@@ -1,0 +1,6 @@
+---
+- hosts: web
+- task:
+    -package:
+        name: "net-tools"
+        state: present

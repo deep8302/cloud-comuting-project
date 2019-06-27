@@ -1,0 +1,16 @@
+---
+- hosts: web
+  tasks:
+    - package: 
+        name: "openssh-server"
+        state: present
+    - command: "setenforce 0"
+    - service:
+        name: "firewalld"
+        state: stopped
+    - service:
+        name: "sshd"
+        state: restarted
+    - service:
+        name: "sshd"
+        enabled: yes
